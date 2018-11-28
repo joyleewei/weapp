@@ -50,7 +50,6 @@ page {
 <script>
 import wepy from 'wepy'
 
-
 export default class extends wepy.app {
   config = {
     pages: [
@@ -83,10 +82,13 @@ export default class extends wepy.app {
   constructor () {
     super()
     this.use('requestfix')
+    this.use('promisify')
   }
 
   onLaunch() {
-
+    wepy.login().then(res => {
+        console.log('login:', res)
+    })
   }
 }
 </script>
