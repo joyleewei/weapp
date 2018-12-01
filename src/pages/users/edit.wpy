@@ -87,7 +87,7 @@
 
     export default class UserEdit extends wepy.page {
         config = {
-            navigationBarTitleText: '修改个人信息'
+            navigationBarTitleText: '修改个人信息',
         }
 
         data = {
