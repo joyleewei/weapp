@@ -16,11 +16,25 @@ page {
 .topic-title {
     padding: 15px;
 }
+
+.create-reply {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+}
 </style>
 
 <template>
     <view class="page">
         <view class="page__bd">
+            <!-- 回复按钮 -->
+            <navigator url="/pages/replies/create?topic_id={{ topic.id }}">
+                <image src="/images/reply.png" class="create-reply" />
+            </navigator>
+
             <view class="weui-cells weui-cells_after-title">
                 <navigator class="weui-cell" url="/pages/users/show?id={{ topic.user.id }}" open-type="redirect">
                     <view class="weui-cell__hd avatar-wrap">
@@ -43,6 +57,9 @@ page {
                     <view class="weui-media-box__info__meta">{{ topic.reply_count }}次回复</view>
                 </view>
             </view>
+
+
+
             <view class="weui-article">
                 <rich-text nodes="{{ topic.body }}" bindtap="tap"></rich-text>
                 <button wx:if="{{ canDelete }}" @tap="deleteTopic" class="weui-btn mini-btn" type="default" size="mini">
@@ -77,6 +94,7 @@ page {
                         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
                     </navigator>
                 </view>
+
             </view>
         </view>
     </view>
@@ -150,6 +168,12 @@ page {
             // 获取当前登陆用户
             this.user = await this.$parent.getCurrentUser()
             this.$apply()
+        }
+
+        async onShow() {
+            this.$parent.checkRefreshPages(this.getCurrentPages().pop().route, () => {
+                this.getTopic(this.topic.id)
+            })
         }
 
         methods = {
