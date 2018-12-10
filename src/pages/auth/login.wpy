@@ -76,7 +76,7 @@
             },
             // 表单提交
             async submit() {
-                // 提交时充值错误
+                // 提交时显示错误
                 this.error = false
                 this.errorMessage = ''
                 if (!this.username || !this.password) {
@@ -102,6 +102,8 @@
 
                     // 201 为登陆正确，返回上一页
                     if (authResponse.statusCode === 201) {
+                        // 提交用户名和密码，获取用户权限
+                        this.$parent.getPerms()
                         wepy.navigateBack()
                     }
                 } catch (err) {
@@ -120,6 +122,8 @@
                 let authResponse = await api.login()
                 // 登陆成功返回上一页
                 if (authResponse.statusCode === 201) {
+                    // 获取小程序用户的openid，获取用户权限
+                    this.$parent.getPerms()
                     wepy.navigateBack()
                 }
             } catch (err) {

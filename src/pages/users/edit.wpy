@@ -26,13 +26,13 @@
             <form bindsubmit="submit">
                 <!-- 填写姓名 -->
                 <view class="avatar-wrap">
-                    <image class="avatar" src="{{ user.avatar }}" @tap="updateAvatar">
+                    <image class="avatar" src="{{ user.avatar }}" @tap="updateAvatar" />
                 </view>
                 <view class="weui-cells__title">姓名</view>
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell weui-cell_input">
                         <view class="weui-cell__bd">
-                            <input class="weui-input" placeholder="请输入姓名" name="name" value="{{user.name}}">
+                            <input class="weui-input" placeholder="请输入姓名" name="name" value="{{user.name}}" />
                         </view>
                         <view wx:if="{{errors.name}}" class="weui-cell__ft">
                             <icon type="warn" size="23" color="#E64340"></icon>
@@ -62,7 +62,7 @@
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
                         <view class="weui-cell__bd">
-                            <textarea class="weui-textarea introduction" placeholder="请输入简介" name="introduction" value={{user.introduction}} />
+                            <textarea class="weui-textarea introduction" placeholder="请输入简介" name="introduction" value="{{user.introduction}}" />
                         </view>
                         <view wx:if="{{ errors.introduction }}" class="weui-cell__ft">
                             <icon type="warn" size="23" color="#E64340"></icon>
